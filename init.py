@@ -67,3 +67,7 @@ def read_index():
         i += entry_len
     assert len(entries) == num_entries
     return entries
+
+changed = {p for p in (paths & entry_paths)
+           if hash_object(read_file(p), 'blob', write=False) !=
+              entries_by_path[p].sha1.hex()}
